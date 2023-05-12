@@ -3,7 +3,7 @@
 import { FC, useState } from 'react';
 import { Button } from "@/components/ui/Button";
 import { signIn } from 'next-auth/react';
-import toast from "react-hot-toast";
+import { toast } from '@/components/ui/Toast';
 
 interface SignInButtonProps {
   
@@ -18,7 +18,11 @@ const SignInButton: FC<SignInButtonProps> = ({}) => {
         try {
             await signIn('google')
         } catch (error) {
-            toast.error('Please try again later.')
+            toast({
+                title: 'Error signin in',
+                message: 'Please try again later.',
+                type: 'error'
+            })
         }
     }
 
